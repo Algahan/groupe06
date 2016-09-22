@@ -4,4 +4,5 @@ import com.adaming.myapp.bo.Voiture;
 
 public interface IVoitureDao extends IGenericDao<Voiture> {
 
+	Voiture add(Voiture pVoiture, long pAgenceId);
 }

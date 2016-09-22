@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>Facelets Template</title>
+</h:head>
+
+<h:body>
+
+	<!--////////////// Header //////////////////////-->
+	<div id="top">
+		<ui:insert name="top">
+			<h:panelGroup>
+				<div align="center">
+					<h:graphicImage value="/images/headervoiture.jpg" width="100%" />
+				</div>
+				<div>
+
+					<h:form>
+						<p:growl id="messages" />
+
+						<p:menubar>
+							<p:submenu label="Location" icon="ui-icon-suitcase">
+								<p:menuitem value="Louer une voiture"
+									url="/pages/choixlocation.xhtml" icon="ui-icon-key" />
+							</p:submenu>
+
+							<p:submenu label="Agence" icon="ui-icon-home">
+								<p:menuitem value="Nouvelle agence : s'enregistrer" url="/pages/ajouteragence.xhtml" />
+								<p:menuitem value="Afficher la liste des clients de votre agence" url="/pages/agencelisteclients.xhtml"/>
+								<p:menuitem value="Afficher la liste des reservations de votre agence" url="/pages/agencelistereservations.xhtml"/>
+								<p:menuitem value="Calculer votre chiffre d'affaire" url="/pages/chiffreaffaire.xhtml"/>
+								<p:menuitem value="Details d'une agence" url="/pages/detailagence.xhtml"/>
+								<p:menuitem value="Ajouter une voiture" url="/pages/ajoutervoiture.xhtml"/>
+							</p:submenu>
+
+							<p:submenu label="Client" icon="ui-icon-person">
+								<p:menuitem value="Consulter la liste des agences" url="/pages/listeagences.xhtml"/>
+								<p:menuitem value="Nouveau client : s'enregistrer" url="/pages/ajouterclient.xhtml"/>
+								<p:menuitem value="Votre profil" url="/pages/detailclient.xhtml" />
+								<p:menuitem value="imprimer une facture" url="/pages/selectionnerfacture.xhtml" />
+							</p:submenu>
+
+							<p:menuitem value="Accueil" url="/index.xhtml"
+								icon="ui-icon-close" />
+						</p:menubar>
+
+					</h:form>
+				</div>
+			</h:panelGroup>
+		</ui:insert>
+	</div>
+
+	<!--////////////// Content + side bar left //////////////////////-->
+	<div></div>
+	<div id="content">
+		<div align="center">
+			<ui:insert name="content">Content</ui:insert>
+		</div>
+	</div>
+
+	<!--////////////// Footer //////////////////////-->
+	<div id="bottom">
+		<ui:insert name="bottom">
+			<h:form>
+				<hr />
+				<h:commandLink action="index.xhtml" value="accueil" />
+
+				<p>&copy; INTI 2016</p>
+
+			</h:form>
+		</ui:insert>
+
+
+	</div>
+
+</h:body>
+
+</html>

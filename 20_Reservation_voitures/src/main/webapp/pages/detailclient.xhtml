@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+
+				<br />
+				
+				<h3>Rentrez votre ID Client.</h3>
+				<h:inputText value="#{clientMb.idClient}"></h:inputText>
+				
+				<br />
+				
+				<h:outputText style="color:red;" value="#{clientMb.message}" />
+
+				<br />
+
+				<h:panelGrid columns="2" border="1" width="50%" bgcolor="lightblue">
+
+					<f:facet name="header">
+						<h:outputText value="Recapitulatif" />
+					</f:facet>
+
+					<h:outputLabel value="Nom" />
+					<h:inputText value="#{clientMb.client.nom}" />
+					
+					<h:outputLabel value="Prenom" />
+					<h:inputText value="#{clientMb.client.prenom}" />
+
+					<p:outputLabel for="popup" value="Date de Naissance" />
+					<p:calendar id="popup" value="#{clientMb.client.dateDeNaissance}" />
+
+					<p:outputLabel for="popup" value="Date d'obtention du permis" />
+					<p:calendar id="popup2" value="#{clientMb.client.datePermis}" />
+
+					<h:outputLabel value="Adresse" />
+					<h:inputText value="#{clientMb.client.adresse}" />
+
+					<h:outputLabel value="Telephone" />
+					<h:inputText value="#{clientMb.client.telephone}" />
+
+					<h:outputLabel value="E-mail" />
+					<h:inputText value="#{clientMb.client.mail}" />
+
+					<h:commandButton value="Obtenir détails"
+						action="#{clientMb.trouverClientById}" />
+
+					<h:commandButton value="Modifier le profil de votre Agence"
+						action="#{clientMb.updateClient}" />
+
+				</h:panelGrid>
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+	<h1>test</h1>
+
+</body>
+</html>

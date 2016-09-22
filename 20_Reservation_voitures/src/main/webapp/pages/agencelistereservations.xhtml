@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+
+				<br />
+
+				<h:inputText value="#{agenceMb.agenceId}"/>
+				
+				<h:commandButton value="Obtenir la liste des reservations." action="#{agenceMb.obtenirListeReservations}"/>
+				
+				<br />
+				
+				<h:outputText style="color:red;" value="#{agenceMb.message}" />
+
+				<br />
+
+				<div align="center">
+
+					<h:dataTable border="1" bgcolor="lightblue"
+						value="#{agenceMb.listeReservations}" var="resa">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{resa.idReservation}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Client" />
+							</f:facet>
+							<h:outputText value="#{resa.client.nom}" />
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Voiture" />
+							</f:facet>
+							<h:outputText value="#{resa.voiture.model}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Date de début" />
+							</f:facet>
+							<h:outputText value="#{resa.dateDebut}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Date de fin" />
+							</f:facet>
+							<h:outputText value="#{resa.dateFin}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Prix Total" />
+							</f:facet>
+							<h:outputText value="#{resa.prixTotal}" />
+						</h:column>
+
+					</h:dataTable>
+
+				</div>
+
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

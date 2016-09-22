@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<style type="text/css">
+.ui-steps .ui-steps-item {
+	width: 24%;
+}
+
+.ui-state-highlight {
+	text-shadow: none !important;
+}
+
+.ui-steps.custom {
+	margin-bottom: 30px;
+}
+
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+	height: 10px;
+	padding: 0 1em;
+}
+
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+	background-color: #0081c2;
+	color: #FFFFFF;
+	display: inline-block;
+	width: 30px;
+	border-radius: 10px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+</style>
+
+			<h3>Location de voiture</h3>
+			<p:steps activeIndex="1" styleClass="custom" readonly="false">
+				<p:menuitem value="Location" url="/pages/choixlocation.xhtml" />
+				<p:menuitem value="Selection" url="/pages/choixvehicule.xhtml" />
+				<p:menuitem value="Paiement" url="#" />
+				<p:menuitem value="Recapitulatif" url="#" />
+			</p:steps>
+			
+			<br/>
+			<br/>
+
+			<h:form>
+				<div align="center">
+
+					<h:dataTable border="1" width="50%" bgcolor="lightblue" value="#{agenceMb.listeVoitures}" var="car">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{car.idVoiture}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Modèle" />
+							</f:facet>
+							<h:outputText value="#{car.model}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Prix" />
+							</f:facet>
+							<h:outputText value="#{car.prix}" />
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Louer"
+								action="/pages/paiement.xhtml"
+								actionListener="#{agenceMb.stockageAvantPaiement}"/>
+						</h:column>
+						
+						
+						<f:param id="voitureId" name="voitureId" value="#{car.idVoiture}" />
+
+					</h:dataTable>
+					
+					<h2>
+						<h:outputText rendered="#{agenceMb.listeVoitures.size()} == 0" style="color:red;" value="Pas de voitures disponibles." />
+					</h2>
+					
+				</div>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>

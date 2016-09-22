@@ -54,6 +54,18 @@ public class Facture {
 		this.dateFacturation = dateFacturation;
 	}
 
+	/**
+	 * @param dateFacturation
+	 * @param reservation
+	 * @param agence
+	 */
+	public Facture(Date dateFacturation, Reservation reservation, Agence agence) {
+		super();
+		this.dateFacturation = dateFacturation;
+		this.reservation = reservation;
+		this.agence = agence;
+	}
+
 	// Getter/Setters
 	/**
 	 * @return the idFacture

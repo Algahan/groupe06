@@ -1,5 +1,6 @@
 package com.adaming.myapp.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Agence {
@@ -35,18 +38,18 @@ public class Agence {
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="agence_reservation",
 	joinColumns=
-	    @JoinColumn(name="reservation_id"),
+	    @JoinColumn(name="agence_id"),
 	    inverseJoinColumns=
-	    @JoinColumn(name="agence_id"))
-	private List<Reservation> listeReservations;
+	    @JoinColumn(name="reservation_id"))
+	private List<Reservation> listeReservations = new ArrayList<Reservation>();
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="agence_client",
 	joinColumns=
-	    @JoinColumn(name="client_id"),
+	    @JoinColumn(name="agence_id"),
 	    inverseJoinColumns=
-	    @JoinColumn(name="agence_id"))
-	private List<Client> listeClients;
+	    @JoinColumn(name="client_id"))
+	private List<Client> listeClients = new ArrayList<Client>();
 	
 	/**
 	 * 
@@ -84,7 +87,27 @@ public class Agence {
 		this.telephone = telephone;
 		this.mail = mail;
 	}
-
+	
+	// méthodes
+	/**
+	 * ajoute un nouvelle réservation à la liste
+	 * @param pReservation
+	 */
+	public void ajouterNouvelleReservation(Reservation pReservation){
+		
+		this.listeReservations.add(pReservation);
+	}
+	
+	/**
+	 * ajoute un nouveau client à la liste
+	 * @param pClient
+	 */
+	public void ajouterNouveauClient(Client pClient){
+		
+		this.listeClients.add(pClient);
+	}
+	
+	// getters / setters
 	/**
 	 * @return the idAgence
 	 */
@@ -158,6 +181,7 @@ public class Agence {
 	/**
 	 * @return the listeVoitures
 	 */
+	@JsonIgnore
 	public List<Voiture> getListeVoitures() {
 		return listeVoitures;
 	}
@@ -165,6 +189,7 @@ public class Agence {
 	/**
 	 * @param listeVoitures the listeVoitures to set
 	 */
+	@JsonIgnore	
 	public void setListeVoitures(List<Voiture> listeVoitures) {
 		this.listeVoitures = listeVoitures;
 	}
@@ -172,6 +197,7 @@ public class Agence {
 	/**
 	 * @return the listeReservations
 	 */
+	@JsonIgnore
 	public List<Reservation> getListeReservations() {
 		return listeReservations;
 	}
@@ -179,6 +205,7 @@ public class Agence {
 	/**
 	 * @param listeReservations the listeReservations to set
 	 */
+	@JsonIgnore
 	public void setListeReservations(List<Reservation> listeReservations) {
 		this.listeReservations = listeReservations;
 	}
@@ -193,6 +220,7 @@ public class Agence {
 	/**
 	 * @param listeFactures the listeFactures to set
 	 */
+	@JsonIgnore
 	public void setListeFactures(List<Facture> listeFactures) {
 		this.listeFactures = listeFactures;
 	}
@@ -200,6 +228,7 @@ public class Agence {
 	/**
 	 * @return the listeClients
 	 */
+	@JsonIgnore
 	public List<Client> getListeClients() {
 		return listeClients;
 	}
@@ -207,6 +236,7 @@ public class Agence {
 	/**
 	 * @param listeClients the listeClients to set
 	 */
+	@JsonIgnore
 	public void setListeClients(List<Client> listeClients) {
 		this.listeClients = listeClients;
 	}

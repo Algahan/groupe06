@@ -2,38 +2,59 @@ package com.adaming.myapp.service;
 
 import java.util.List;
 
-import com.adaming.myapp.bo.Voiture;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.adaming.myapp.bo.Voiture;
+import com.adaming.myapp.dao.IVoitureDao;
+
+//@Service
+@Transactional
 public class VoitureService implements IVoitureService {
+
+	private IVoitureDao dao;
+	
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(IVoitureDao dao) {
+		this.dao = dao;
+	}
 
 	@Override
 	public List<Voiture> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.getAll();
 	}
 
 	@Override
-	public Voiture add(Voiture t) {
-		// TODO Auto-generated method stub
-		return null;
+	public Voiture add(Voiture pVoiture) {
+		
+		return dao.add(pVoiture);
 	}
 
 	@Override
-	public Voiture update(Voiture t) {
-		// TODO Auto-generated method stub
-		return null;
+	public Voiture update(Voiture pVoiture) {
+		
+		return dao.update(pVoiture);
 	}
 
 	@Override
-	public Voiture delete(long pId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Voiture delete(long pVoitureId) {
+		
+		return dao.delete(pVoitureId);
 	}
 
 	@Override
-	public Voiture getById(long pId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Voiture getById(long pVoitureId) {
+		
+		return dao.getById(pVoitureId);
+	}
+
+	@Override
+	public Voiture add(Voiture pVoiture, long pAgenceId) {
+		
+		return dao.add(pVoiture, pAgenceId);
 	}
 
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<style type="text/css">
+.ui-steps .ui-steps-item {
+	width: 24%;
+}
+
+.ui-state-highlight {
+	text-shadow: none !important;
+}
+
+.ui-steps.custom {
+	margin-bottom: 30px;
+}
+
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+	height: 10px;
+	padding: 0 1em;
+}
+
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+	background-color: #0081c2;
+	color: #FFFFFF;
+	display: inline-block;
+	width: 30px;
+	border-radius: 10px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+</style>
+
+			<h3>Location de voiture</h3>
+			<p:steps activeIndex="0" styleClass="custom" readonly="false">
+				<p:menuitem value="Location" url="/pages/choixlocation.xhtml" />
+				<p:menuitem value="Selection" url="#" />
+				<p:menuitem value="Paiement" url="#" />
+				<p:menuitem value="Recapitulatif" url="#" />
+			</p:steps>
+
+			<br/>
+			<br/>
+			
+			<h:form>
+				<center>
+					<h:panelGrid columns="2" bgcolor="lightblue" border="3" frame="border"
+						width="50%">
+
+						<f:facet name="header">
+							<h:outputText value="Louer une Voiture" />
+						</f:facet>
+
+						<h:outputLabel value="Choissisez votre Agence" />
+						<h:selectOneMenu value="#{agenceMb.agenceId}">
+							<f:selectItems value="#{agenceMb.listeAgences}" var="a"
+								itemLabel="#{a.nom}" itemValue="#{a.idAgence}" />
+						</h:selectOneMenu>
+
+						<p:outputLabel for="popup" value="Date Début Réservation" />
+						<p:calendar id="popup" value="#{agenceMb.dateDebut}" />
+						
+						<p:outputLabel for="popup" value="Date Fin Réservation" />
+						<p:calendar id="popup2" value="#{agenceMb.dateFin}" />
+
+						<f:facet name="footer">
+							<center>
+								<h:commandButton value="Submit" action="#{agenceMb.obtenirVoituresDisponibles}" />
+							</center>
+						</f:facet>
+
+
+					</h:panelGrid>
+					
+					<h2>
+						<h:outputText style="color:red;" value="#{agenceMb.message}" />
+					</h2>
+
+				</center>
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

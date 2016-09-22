@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+		
+<br/>
+			
+			<h:form>
+				<div align="centre">
+				
+					<h:panelGrid columns="2" bgcolor="lightblue" border="3" frame="border"
+						width="50%">
+
+						<f:facet name="header">
+							<h:outputText value="Chiffre d'affaire" />
+						</f:facet>
+
+						<h:outputLabel value="Agence" />
+						
+						<h:outputLabel value="Année"/>
+						
+						<h:selectOneMenu value="#{agenceMb.agenceId}">
+							<f:selectItems value="#{agenceMb.listeAgences}" var="a"
+								itemLabel="#{a.nom}" itemValue="#{a.idAgence}" />
+						</h:selectOneMenu>
+
+						<h:inputText value="#{agenceMb.annee}"/>
+						
+						<h:outputLabel value="Gains"/>
+						<h:outputText value="#{agenceMb.chiffreAffaire}"/>
+
+						<f:facet name="footer">
+							<center>
+								<h:commandButton value="Calculer" action="#{agenceMb.calculerChiffreAffaire}" />
+							</center>
+						</f:facet>
+
+
+					</h:panelGrid>
+					
+					<h2>
+						<h:outputText style="color:red;" value="#{agenceMb.message}" />
+					</h2>
+
+				</div>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

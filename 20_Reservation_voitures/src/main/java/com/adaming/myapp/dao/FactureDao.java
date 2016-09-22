@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.adaming.myapp.bo.Client;
 import com.adaming.myapp.bo.Facture;
 
-@Repository
+//@Repository
 public class FactureDao implements IFactureDao {
 
 	@PersistenceContext

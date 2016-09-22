@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<br />
+
+			<h:form>
+				<div align="center">
+				
+					<h:panelGrid columns="2" bgcolor="lightblue" border="3"
+						frame="border" width="50%">
+
+						<f:facet name="header">
+							<h:outputText value="Ajouter une voiture à la collection." />
+						</f:facet>
+
+						<h:outputLabel value="Agence" />
+						<h:selectOneMenu value="#{voitureMb.agenceId}">
+							<f:selectItems value="#{agenceMb.listeAgences}" var="a"
+								itemLabel="#{a.nom}" itemValue="#{a.idAgence}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="Modèle" />
+						<h:inputText value="#{voitureMb.voiture.model}" />
+
+						<h:outputLabel value="Année" />
+						<h:inputText value="#{voitureMb.voiture.annee}" />
+
+						<h:outputLabel value="Immatriculation" />
+						<h:inputText value="#{voitureMb.voiture.imatriculation}" />
+
+						<h:outputLabel value="Kilometrage" />
+						<h:inputText value="#{voitureMb.voiture.kilometrage}" />
+
+						<h:outputLabel value="Prix" />
+						<h:inputText value="#{voitureMb.voiture.prix}" />
+
+						<f:facet name="footer">
+							<div align="center">
+								<h:commandButton value="Valider"
+									action="#{voitureMb.ajouterNouvelleVoiture}" />
+							</div>
+						</f:facet>
+
+					</h:panelGrid>
+
+					<f:param id="agenceId" name="agenceId" value="#{clientMb.idAgence}" />
+
+					<h2>
+						<h:outputText style="color:blue;" value="#{clientMb.message}" />
+					</h2>
+
+				</div>
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.adaming.myapp.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import com.adaming.myapp.bo.Agence;
 import com.adaming.myapp.bo.Facture;
+import com.adaming.myapp.bo.Reservation;
 
-@Repository
+//@Repository
 public class AgenceDao implements IAgenceDao{
 
 	@PersistenceContext
@@ -73,23 +75,36 @@ public class AgenceDao implements IAgenceDao{
 	public Agence getById(long pAgenceId) {
 		
 		Agence pAgence = em.find(Agence.class, pAgenceId);
-		log.info("=========== Agence getById : " + pAgence.getIdAgence());
+		//log.info("=========== Agence getById : " + pAgence.getIdAgence());
 		
 		return pAgence;
 	}
 
 	@Override
-	public List<Facture> getListeFacturesByAgence(long pFactureId) {
+	public List<Facture> getListeFacturesByAgence(long pAgenceId) {
 		
-		String hqlReq = "from Reservation r where r.agence.idAgence=:x";
+		String hqlReq = "from Facture f where f.agence.idAgence=:x";
 		
 		Query query = em.createQuery(hqlReq);
 		
-		query.setParameter("x", pFactureId);
+		query.setParameter("x", pAgenceId);
 		
 		List<Facture> listeFactures = query.getResultList();
 		
 		return listeFactures;
+	}
+
+	@Override
+	public List<Reservation> getListReservationDateRetour(Long pAgenceId, Date dateRetour) {
+		
+		String reqHql = "from Reservation r where r.agence.id=:x and r.dateFin=:y";
+		
+		Query query = em.createQuery(reqHql);
+		
+		query.setParameter("x", pAgenceId);
+		query.setParameter("y", dateRetour);
+		
+		return query.getResultList();
 	}
 	
 	

@@ -9,10 +9,11 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.adaming.myapp.bo.Agence;
 import com.adaming.myapp.bo.Facture;
 import com.adaming.myapp.bo.Voiture;
 
-@Repository
+//@Repository
 public class VoitureDao implements IVoitureDao {
 
 	@PersistenceContext
@@ -74,6 +75,18 @@ public class VoitureDao implements IVoitureDao {
 		
 		Voiture pVoiture = em.find(Voiture.class, pVoitureId);
 		log.info("=========== Voiture getById : " + pVoitureId);
+		
+		return pVoiture;
+	}
+
+	@Override
+	public Voiture add(Voiture pVoiture, long pAgenceId) {
+
+		Agence pAgence = em.find(Agence.class, pAgenceId);
+		
+		pVoiture.setAgence(pAgence);
+		
+		em.persist(pVoiture);
 		
 		return pVoiture;
 	}

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.adaming.myapp.bo.Agence;
 import com.adaming.myapp.bo.Client;
 
-@Repository
+//@Repository
 public class ClientDao implements IClientDao {
 
 	@PersistenceContext
@@ -74,6 +74,20 @@ public class ClientDao implements IClientDao {
 		
 		Client pClient = em.find(Client.class, pClientId);
 		log.info("=========== Client getById : " + pClientId);
+		
+		return pClient;
+	}
+
+	@Override
+	public Client add(Client pClient, long pAgenceId) {
+		
+		em.persist(pClient);
+		
+		Agence pAgence = em.find(Agence.class, pAgenceId);
+		
+		pAgence.ajouterNouveauClient(pClient);
+		
+		em.merge(pAgence);
 		
 		return pClient;
 	}

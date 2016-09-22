@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+
+				<br />
+
+				<h:inputText value="#{agenceMb.agenceId}">Rentrez l'id de votre agence.</h:inputText>
+				
+				<h:commandButton value="Obtenir la liste clients." action="#{agenceMb.obtenirListeClients}"/>
+				
+				<br />
+				
+				<h:outputText style="color:red;" value="#{agenceMb.message}" />
+
+				<br />
+
+				<div align="center">
+
+					<h:dataTable border="1" bgcolor="lightblue"
+						value="#{agenceMb.listeClients}" var="client">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{client.idClient}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nom" />
+							</f:facet>
+							<h:outputText value="#{client.nom}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Prenom" />
+							</f:facet>
+							<h:outputText value="#{client.prenom}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Naissance" />
+							</f:facet>
+							<h:outputText value="#{client.dateDeNaissance}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Permis" />
+							</f:facet>
+							<h:outputText value="#{client.datePermis}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Téléphone" />
+							</f:facet>
+							<h:outputText value="#{client.telephone}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Adresse" />
+							</f:facet>
+							<h:outputText value="#{client.adresse}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="E-mail" />
+							</f:facet>
+							<h:outputText value="#{client.mail}" />
+						</h:column>
+
+					</h:dataTable>
+
+				</div>
+
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

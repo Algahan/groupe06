@@ -2,7 +2,7 @@ package com.adaming.myapp.dao;
 
 import java.util.List;
 
-public class GenericDao<T> implements IGenericDao<T> {
+public abstract class GenericDao<T> implements IGenericDao<T> {
 
 	@Override
 	public List<T> getAll() {

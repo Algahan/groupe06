@@ -73,6 +73,25 @@ public class Voiture {
 	}
 
 	/**
+	 * @param kilometrage
+	 * @param model
+	 * @param annee
+	 * @param prix
+	 * @param imatriculation
+	 * @param agence
+	 */
+	public Voiture(String kilometrage, String model, int annee, double prix, String imatriculation, Agence agence) {
+		super();
+		this.kilometrage = kilometrage;
+		this.model = model;
+		this.annee = annee;
+		this.prix = prix;
+		this.imatriculation = imatriculation;
+		this.agence = agence;
+	}
+
+	// getters // setters
+	/**
 	 * @return the idVoiture
 	 */
 	public long getIdVoiture() {

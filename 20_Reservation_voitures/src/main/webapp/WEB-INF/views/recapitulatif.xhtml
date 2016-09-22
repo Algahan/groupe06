@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<style type="text/css">
+.ui-steps .ui-steps-item {
+	width: 24%;
+}
+
+.ui-state-highlight {
+	text-shadow: none !important;
+}
+
+.ui-steps.custom {
+	margin-bottom: 30px;
+}
+
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+	height: 10px;
+	padding: 0 1em;
+}
+
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+	background-color: #0081c2;
+	color: #FFFFFF;
+	display: inline-block;
+	width: 30px;
+	border-radius: 10px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+</style>
+
+			<h3>Location de voiture</h3>
+			<p:steps activeIndex="3" styleClass="custom" readonly="false">
+				<p:menuitem value="Location" url="/pages/choixlocation.xhtml" />
+				<p:menuitem value="Selection" url="/pages/choixvehicule.xhtml" />
+				<p:menuitem value="Paiement" url="/pages/choixpaiement.xhtml" />
+				<p:menuitem value="Recapitulatif" url="/pages/recapitulatif.xhtml" />
+			</p:steps>
+
+			<br/>
+			<br/>
+			
+			<h:form>
+				<h:panelGrid columns="2" border="1" width="50%" bgcolor="lightblue">
+
+						<f:facet name="header">
+							<h:outputText value="Recapitulatif" />
+						</f:facet>
+						
+						<h:outputLabel value="Client" />
+						<h:outputText value="#{agenceMb.reservation.client.nom}" />
+
+						<h:outputLabel value="Agence" />
+						<h:outputText value="#{agenceMb.reservation.facture.agence.nom}" />
+						
+						<h:outputLabel value="Debut Reservation" />
+						<h:outputText value="#{agenceMb.reservation.dateDebut}" />
+						
+						<h:outputLabel value="Fin reservation" />
+						<h:outputText value="#{agenceMb.reservation.dateFin}" />
+						
+						<h:outputLabel value="Prix total" />
+						<h:outputText value="#{agenceMb.reservation.prixTotal}" />
+
+					</h:panelGrid>
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

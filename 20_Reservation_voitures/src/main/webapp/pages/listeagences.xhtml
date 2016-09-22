@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+
+				<br />
+				<div align="center">Agences</div>
+				<div>
+					<h:selectOneMenu value="#{agenceMb.agenceId}">
+						<f:selectItems value="#{agenceMb.listeAgences}" var="a"
+							itemLabel="#{a.nom}" itemValue="#{a.idAgence}" />
+					</h:selectOneMenu>
+				</div>
+				
+				<br />
+
+				<h:panelGrid columns="2" border="1" width="50%" bgcolor="lightblue">
+
+					<f:facet name="header">
+						<h:outputText value="Recapitulatif" />
+					</f:facet>
+
+					<h:outputLabel value="Agence" />
+					<h:outputText value="#{agenceMb.agence.nom}" />
+
+					<h:outputLabel value="Adresse" />
+					<h:outputText value="#{agenceMb.agence.adresse}" />
+
+					<h:outputLabel value="Telephone" />
+					<h:outputText value="#{agenceMb.agence.telephone}" />
+
+					<h:outputLabel value="E-mail" />
+					<h:outputText value="#{agenceMb.agence.mail}" />
+
+					<h:commandButton value="Obtenir détails"
+						action="#{agenceMb.trouverAgenceById}" />
+
+					<h:commandButton value="S'incrire auprès de cette agence"
+						action="/pages/ajouterclient.xhtml" />
+
+				</h:panelGrid>
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+	<h1>test</h1>
+
+</body>
+</html>
